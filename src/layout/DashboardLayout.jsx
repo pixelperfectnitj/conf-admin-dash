@@ -14,7 +14,7 @@ export default function DashboardLayout() {
       <div>
         <Sidebar />
         <main className='py-10 bg-gray-100 lg:pl-72'>
-          <div className='px-4 sm:px-6 lg:px-8'>{/* Your content */}</div>
+          <div className='px-4 sm:px-6 lg:px-8'>This is the main content</div>
         </main>
       </div>
     </>
