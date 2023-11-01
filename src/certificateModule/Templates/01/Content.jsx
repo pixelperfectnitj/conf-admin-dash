@@ -13,14 +13,14 @@ function Content({ data }) {
                 {/* {Certificate} */}
             </text>
             <text
-                x="161.26"
+                x="100.26"
                 y="221.542"
                 fill="#46B4A9"
                 fontFamily="AbhayaLibre-Regular"
                 fontSize="38.793"
                 textAnchor="middle"
             >
-                OF APPRECIATION
+                OF APPRECIATION 
             </text>
             <text
                 id="text"
@@ -112,8 +112,8 @@ function Content({ data }) {
                 fontSize="15.816"
                 textAnchor="middle"
                 fontFamily="AbhayaLibre-Regular"
-                width="200px"
-                height="200px"
+                width="100px"
+                height="100px"
             >
                 <p className="w-full">HJNNZJ Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus nemo sint odio delectus qui omnis voluptatibus illum amet consequuntur unde! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Debitis a veniam dicta quibusdam similique ea sint quaerat consectetur nihil! Officia. Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi officiis quis architecto, laborum molestias facere explicabo laudantium inventore iste vitae! lrem30
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati possimus unde dolorum, explicabo minus doloribus, quam molestiae esse eos quidem debitis vitae beatae libero nostrum odit tenetur in, vel officiis?
