@@ -1,6 +1,66 @@
 function Top() {
     return (
         <>
+        <defs>
+    <linearGradient
+      id="a"
+      x1="579.046"
+      x2="596.353"
+      y1="-410.125"
+      y2="-410.125"
+      gradientTransform="translate(-11871.568 8539.78) scale(20.502)"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop offset={0} stopColor="#AB8641" />
+      <stop offset=".215" stopColor="#FFD386" />
+      <stop offset=".606" stopColor="#AB8641" />
+      <stop offset=".779" stopColor="#AB8641" />
+      <stop offset=".897" stopColor="#FFD386" />
+      <stop offset={1} stopColor="#AB8641" />
+    </linearGradient>
+    <linearGradient
+      id="b"
+      x1="244.846"
+      x2="260.557"
+      y1="361.87"
+      y2="361.87"
+      gradientTransform="translate(-5019.8 -7299.82) scale(20.502)"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop offset={0} stopColor="#C44545" />
+      <stop offset={1} stopColor="#6A1B1B" />
+      <stop offset={1} stopColor="#231F20" />
+    </linearGradient>
+    <linearGradient
+      id="c"
+      x1="108.01"
+      x2="123.352"
+      y1="93.954"
+      y2="93.954"
+      gradientTransform="translate(-1406.384 -1248.9) scale(20.502)"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop offset={0} stopColor="#AB8641" />
+      <stop offset=".215" stopColor="#FFD386" />
+      <stop offset=".606" stopColor="#AB8641" />
+      <stop offset=".779" stopColor="#AB8641" />
+      <stop offset=".897" stopColor="#FFD386" />
+      <stop offset={1} stopColor="#AB8641" />
+    </linearGradient>
+    <linearGradient
+      id="d"
+      x1="87.94"
+      x2="103.415"
+      y1="72.11"
+      y2="72.11"
+      gradientTransform="translate(-1400.32 -1248.9) scale(20.502)"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop offset={0} stopColor="#C44545" />
+      <stop offset={1} stopColor="#6A1B1B" />
+      <stop offset={1} stopColor="#231F20" />
+    </linearGradient>
+  </defs>
             <path fill="#424847" d="M-4.729-6.627h1131.977v806.954H-4.729Z" />
             <path
                 fill="#FFFFFF"

@@ -6,7 +6,8 @@ import EditCertificate from "./EditCertificate"
 import { useState } from "react"
 import CertificateTemplate from "./CertificateTemplates";
 import mySvg from "../assets/temp1.svg"
-import Template01 from "./Templates/01";
+import Template02 from "./Templates/02";
+// import Template02 from "./Templates/02";
 
 
 
@@ -54,8 +55,11 @@ function Certificate() {
             </div>
             <div className="flex md:flex-row flex-col">
                 <div className="md:basis-[70%] basis:w-[100vw]">
-                    <Template01 />
+                    <Template02 />
                 </div>
+                {/* <div className="md:basis-[70%] basis:w-[100vw]">
+                    <Template02 />
+                </div> */}
                 <div className="">
                     <EditCertificate certificateData={certificateData} setCertificateData={setCertificateData} handleSubmit={handleSubmit} />
                 </div>
