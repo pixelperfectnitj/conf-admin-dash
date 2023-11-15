@@ -113,26 +113,26 @@ setLoading(true)
 
                 <div className="block box-border" >
 
-                    <form className=" bg-blue-100 shadow-md rounded px-8 pt-6 pb-8 m-10 " onSubmit={handleSubmit}>
+                    <form className=" bg-blue-100 shadow-md rounded px-8 pt-6 pb-8 m-10 " autoComplete='off' onSubmit={handleSubmit}>
                         <div className="text-blue-700 text-[28px] font-serif mx-auto my-auto grid place-content-center" >Add a New Participant</div>
                         <label className="block text-gray-700 text-lg ml-1  font-bold " >Name</label>
-                        <input type="text" name="authorName" value={authorName} onChange={handleChange}
+                        <input type="text" name="authorName" required value={authorName} onChange={handleChange}
                             className="shadow appearance-none border rounded w-full py-1 mb-2 px-3 text-blue-500   leading-tight    focus:outline-none focus:shadow-outline" />
 
                         <label className="block text-gray-700 text-lg ml-1 font-bold ">Designation</label>
-                        <input type="text" name="authorDesignation" value={authorDesignation} onChange={handleChange}
+                        <input type="text" name="authorDesignation" required value={authorDesignation} onChange={handleChange}
                             className="shadow appearance-none border rounded w-full py-1 mb-2 px-3 text-blue-500   leading-tight    focus:outline-none focus:shadow-outline" />
 
                         <label className="block text-gray-700 text-lg ml-1 font-bold ">Institute</label>
-                        <input type="text" name="authorInstitute" value={authorInstitute} onChange={handleChange}
+                        <input type="text" name="authorInstitute" required value={authorInstitute} onChange={handleChange}
                             className="shadow appearance-none border rounded w-full py-1 mb-2 px-3 text-blue-500   leading-tight    focus:outline-none focus:shadow-outline" />
 
                         <label className="block text-gray-700 text-lg ml-1 font-bold ">Paper Title</label>
-                        <input type="text" name="paperTitle" value={paperTitle} onChange={handleChange}
+                        <input type="text" name="paperTitle" required value={paperTitle} onChange={handleChange}
                             className="shadow appearance-none border rounded w-full py-1 mb-2 px-3 text-blue-500   leading-tight    focus:outline-none focus:shadow-outline" />
 
                         <label className="block text-gray-700 text-lg ml-1 font-bold ">Paper Id</label>
-                        <input type="text" name="paperId" value={paperId} onChange={handleChange}
+                        <input type="text" name="paperId" required value={paperId} onChange={handleChange}
                             className="shadow appearance-none border rounded w-full py-1 mb-2 px-3 text-blue-500   leading-tight    focus:outline-none focus:shadow-outline" />
 
                        

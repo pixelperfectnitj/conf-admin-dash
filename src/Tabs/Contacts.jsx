@@ -127,26 +127,27 @@ const Contacts = () => {
     return (
         <main className='py-10 bg-gray-100 lg:pl-72 min-h-screen'>
             <div className='px-4 sm:px-6 lg:px-8'>
-                <form className="bg-blue-100 shadow-md rounded px-8 pt-6 pb-8 m-10" onSubmit={handleSubmit}>
+                <form className="bg-blue-100 shadow-md rounded px-8 pt-6 pb-8 m-10" autoComplete="off"
+                onSubmit={handleSubmit}>
                     <div className="text-blue-700 text-[28px] font-serif mx-auto my-auto grid place-content-center">Add New Contact Details</div>
                     <label className="block text-gray-700 text-lg ml-1 font-bold">Title</label>
-                    <input type="text" name="title" value={title} onChange={handleChange}
+                    <input type="text" name="title" required value={title} onChange={handleChange}
                         className="shadow appearance-none border rounded w-full py-1 mb-2 px-3 text-blue-700   leading-tight    focus:outline-none focus:shadow-outline" />
 
                     <label className="block text-gray-700 text-lg ml-1  font-bold">Name</label>
-                    <input type="text" name="name" value={name} onChange={handleChange}
+                    <input type="text" name="name" required value={name} onChange={handleChange}
                         className="shadow appearance-none border rounded w-full py-1 mb-2 px-3 text-blue-700   leading-tight    focus:outline-none focus:shadow-outline" />
 
                     <label className="block text-gray-700 text-lg ml-1 font-bold">Designation</label>
-                    <input type="text" name="designation" value={designation} onChange={handleChange}
+                    <input type="text" name="designation" required value={designation} onChange={handleChange}
                         className="shadow appearance-none border rounded w-full py-1 mb-2 px-3 text-blue-700   leading-tight    focus:outline-none focus:shadow-outline" />
 
                     <label className="block text-gray-700 text-lg ml-1 font-bold">Institute</label>
-                    <input type="text" name="institute" value={institute} onChange={handleChange}
+                    <input type="text" name="institute"required value={institute} onChange={handleChange}
                         className="shadow appearance-none border rounded w-full py-1 mb-2 px-3 text-blue-700   leading-tight    focus:outline-none focus:shadow-outline" />
 
                     <label className="block text-gray-700 text-lg ml-1 font-bold">Profile Link </label>
-                    <input type="text" name="profileLink" value={profileLink} onChange={handleChange}
+                    <input type="text" name="profileLink"required value={profileLink} onChange={handleChange}
                         className="shadow appearance-none border rounded w-full py-1 mb-2 px-3 text-blue-700   leading-tight    focus:outline-none focus:shadow-outline" />
 
                     <label className="block text-gray-700 text-lg ml-1 font-bold">Image Link</label>
@@ -154,10 +155,10 @@ const Contacts = () => {
                         className="shadow appearance-none border rounded w-full py-1 mb-2 px-3 text-blue-700   leading-tight    focus:outline-none focus:shadow-outline" />
 
                     <label className="block text-gray-700 text-lg ml-1 font-bold">Phone</label>
-                    <input type="text" name="phone" value={phone} onChange={handleChange}
+                    <input type="text" name="phone" required value={phone} onChange={handleChange}
                         className="shadow appearance-none border rounded w-full py-1 mb-2 px-3 text-blue-700   leading-tight    focus:outline-none focus:shadow-outline" />
                     <label className="block text-gray-700 text-lg ml-1 font-bold">Email</label>
-                    <input type="text" name="email" value={email} onChange={handleChange}
+                    <input type="text" name="email" required value={email} onChange={handleChange}
                         className="shadow appearance-none border rounded w-full py-1 mb-2 px-3 text-blue-700   leading-tight    focus:outline-none focus:shadow-outline" />
                     <label className="block text-gray-700 text-lg ml-1 font-bold">Fax</label>
                     <input type="text" name="fax" value={fax} onChange={handleChange}

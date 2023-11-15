@@ -121,10 +121,10 @@ const Home = () => {
             <div className='px-4 sm:px-6 lg:px-8'>
                 <div className="block box-border" >
 
-                    <form autocomplete="off" className="bg-blue-100 shadow-md rounded px-8 pt-6 pb-8 m-10 " onSubmit={handleSubmit}>
+                    <form autoComplete="off" className="bg-blue-100 shadow-md rounded px-8 pt-6 pb-8 m-10 " onSubmit={handleSubmit}>
                         <div className="text-blue-700 text-[28px] font-serif mx-auto my-auto grid place-content-center" >About Conference</div>
                         <label className="block text-gray-700 text-lg ml-1  font-bold " >Name of Conference</label>
-                        <input type="text" name="confName" value={confName} onChange={handleChange}
+                        <input type="text" required name="confName" value={confName} onChange={handleChange}
                             className="shadow appearance-none border rounded w-full py-1 mb-2 px-3 text-blue-500   leading-tight    focus:outline-none focus:shadow-outline" />
 
                         <label className="block text-gray-700 text-lg ml-1 font-bold ">Starting Date of Conference</label>

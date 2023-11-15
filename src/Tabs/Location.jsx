@@ -126,22 +126,22 @@ const Location = () => {
         <main className='py-10 bg-gray-100 lg:pl-72 min-h-screen'>
             <div className='px-4 sm:px-6 lg:px-8'>
                 <div className="block box-border" >
-                    <form className="bg-blue-100 shadow-md rounded px-8 pt-6 pb-8 m-10 " onSubmit={handleSubmit}>
+                    <form className="bg-blue-100 shadow-md rounded px-8 pt-6 pb-8 m-10 " autoComplete="off" onSubmit={handleSubmit}>
                         <div className="text-blue-700 text-[28px] font-serif mx-auto my-auto grid place-content-center" >About Location</div>
                         <label className="block text-gray-700 text-lg ml-1  font-bold " >Description</label>
-                        <input type="text" name="description" value={description} onChange={handleChange}
+                        <input type="text" name="description" required value={description} onChange={handleChange}
                             className="shadow appearance-none border rounded w-full py-1 mb-2 px-3 text-blue-500   leading-tight    focus:outline-none focus:shadow-outline" />
 
                         <label className="block text-gray-700 text-lg ml-1 font-bold ">Address</label>
-                        <input type="text" name="address" value={address} onChange={handleChange}
+                        <input type="text" name="address"required value={address} onChange={handleChange}
                             className="shadow appearance-none border rounded w-full py-1 mb-2 px-3 text-blue-500   leading-tight    focus:outline-none focus:shadow-outline" />
 
                         <label className="block text-gray-700 text-lg ml-1 font-bold ">Latitude</label>
-                        <input type="text" name="latitude" value={latitude} onChange={handleChange}
+                        <input type="text" name="latitude" required value={latitude} onChange={handleChange}
                             className="shadow appearance-none border rounded w-full py-1 mb-2 px-3 text-blue-500   leading-tight    focus:outline-none focus:shadow-outline" />
 
                         <label className="block text-gray-700 text-lg ml-1 font-bold ">Longitude</label>
-                        <input type="text" name="longitude" value={longitude} onChange={handleChange}
+                        <input type="text" name="longitude"required  value={longitude} onChange={handleChange}
                             className="shadow appearance-none border rounded w-full py-1 mb-2 px-3 text-blue-500   leading-tight    focus:outline-none focus:shadow-outline" />
                              <label className="block text-gray-700 text-lg ml-1 font-bold">Sequence</label>
                     <input

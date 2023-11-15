@@ -125,14 +125,14 @@ const Sponsors = () => {
     return (
         <main className='py-10 bg-gray-100 lg:pl-72 min-h-screen'>
             <div className='px-4 sm:px-6 lg:px-8'>
-                <form className="bg-blue-100 shadow-md rounded px-8 pt-6 pb-8 m-10" onSubmit={handleSubmit}>
+                <form className="bg-blue-100 shadow-md rounded px-8 pt-6 pb-8 m-10" autoComplete="off" onSubmit={handleSubmit}>
                     <div className="text-blue-700 text-[28px] font-serif mx-auto my-auto grid place-content-center">Add a New Sponsor</div>
                     <label className="block text-gray-700 text-lg ml-1 font-bold">Title-1</label>
-                    <input type="text" name="name" value={name} onChange={handleChange}
+                    <input type="text" name="name" required value={name} onChange={handleChange}
                         className="shadow appearance-none border rounded w-full py-1 mb-2 px-3 text-blue-700   leading-tight    focus:outline-none focus:shadow-outline" />
 
                     <label className="block text-gray-700 text-lg ml-1 font-bold">Title-2</label>
-                    <input type="text" name="type" value={type} onChange={handleChange}
+                    <input type="text" name="type"required value={type} onChange={handleChange}
                         className="shadow appearance-none border rounded w-full py-1 mb-2 px-3 text-blue-700   leading-tight    focus:outline-none focus:shadow-outline" />
 
                     <label className="block text-gray-700 text-lg ml-1 font-bold">Logo</label>

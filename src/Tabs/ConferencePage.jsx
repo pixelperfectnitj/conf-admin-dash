@@ -115,14 +115,14 @@ const ConferencePage = () => {
     return (
 
         <div className="block box-border" >
-            <form className=" bg-blue-100 shadow-md rounded px-8 pt-6 pb-8 m-10 " autocomplete="off" onSubmit={handleSubmit}>
+            <form className=" bg-blue-100 shadow-md rounded px-8 pt-6 pb-8 m-10 " autoComplete="off" onSubmit={handleSubmit}>
                 <div className="text-blue-700 text-[28px] font-serif mx-auto my-auto grid place-content-center" >Create a new Conference</div>
                 <label className="block text-gray-700 text-lg ml-1  font-bold " >Email</label>
-                <input type="text" name="email" value={email} onChange={handleChange}
+                <input type="text" required name="email" value={email} onChange={handleChange}
                     className="shadow appearance-none border rounded w-full py-1 mb-2 px-3 text-blue-500   leading-tight    focus:outline-none focus:shadow-outline" />
 
                 <label className="block text-gray-700 text-lg ml-1 font-bold ">Name of Conference</label>
-                <input type="text" name="name" value={name} onChange={handleChange}
+                <input type="text" required name="name" value={name} onChange={handleChange}
                     className="shadow appearance-none border rounded w-full py-1 mb-2 px-3 text-blue-500   leading-tight    focus:outline-none focus:shadow-outline" />
 
 

@@ -135,22 +135,22 @@ const Speaker = () => {
 
                 <div className="block box-border" >
 
-                    <form className=" bg-blue-100 shadow-md rounded px-8 pt-6 pb-8 m-10 " onSubmit={handleSubmit}>
+                    <form className=" bg-blue-100 shadow-md rounded px-8 pt-6 pb-8 m-10 " onSubmit={handleSubmit} autoComplete="off">
                         <div className="text-blue-700 text-[28px] font-serif mx-auto my-auto grid place-content-center" >Add a New Speaker</div>
                         <label className="block text-gray-700 text-lg ml-1  font-bold " >Name of Speaker</label>
-                        <input type="text" name="Name" value={Name} onChange={handleChange}
+                        <input type="text" required name="Name" value={Name}   onChange={handleChange}
                             className="shadow appearance-none border rounded w-full py-1 mb-2 px-3 text-blue-500   leading-tight    focus:outline-none focus:shadow-outline" />
 
                         <label className="block text-gray-700 text-lg ml-1 font-bold ">Designation</label>
-                        <input type="text" name="Designation" value={Designation} onChange={handleChange}
+                        <input type="text" name="Designation"required value={Designation} onChange={handleChange}
                             className="shadow appearance-none border rounded w-full py-1 mb-2 px-3 text-blue-500   leading-tight    focus:outline-none focus:shadow-outline" />
 
                         <label className="block text-gray-700 text-lg ml-1 font-bold ">Institute</label>
-                        <input type="text" name="Institute" value={Institute} onChange={handleChange}
+                        <input type="text" name="Institute" required value={Institute} onChange={handleChange}
                             className="shadow appearance-none border rounded w-full py-1 mb-2 px-3 text-blue-500   leading-tight    focus:outline-none focus:shadow-outline" />
 
                         <label className="block text-gray-700 text-lg ml-1 font-bold ">Profile Link of Speaker</label>
-                        <input type="text" name="ProfileLink" value={ProfileLink} onChange={handleChange}
+                        <input type="text" name="ProfileLink"required value={ProfileLink} onChange={handleChange}
                             className="shadow appearance-none border rounded w-full py-1 mb-2 px-3 text-blue-500   leading-tight    focus:outline-none focus:shadow-outline" />
 
                         <label className="block text-gray-700 text-lg ml-1 font-bold ">Image Link of Speaker</label>
@@ -158,11 +158,11 @@ const Speaker = () => {
                             className="shadow appearance-none border rounded w-full py-1 mb-2 px-3 text-blue-500   leading-tight    focus:outline-none focus:shadow-outline" />
 
                         <label className="block text-gray-700 text-lg ml-1 font-bold ">TalkType</label>
-                        <input type="text" name="TalkType" value={TalkType} onChange={handleChange}
+                        <input type="text" name="TalkType"required value={TalkType} onChange={handleChange}
                             className="shadow appearance-none border rounded w-full py-1 mb-2 px-3 text-blue-500   leading-tight    focus:outline-none focus:shadow-outline" />
 
                         <label className="block text-gray-700 text-lg ml-1 font-bold ">TalkTitle</label>
-                        <input type="text" name="TalkTitle" value={TalkTitle} onChange={handleChange}
+                        <input type="text" name="TalkTitle"required value={TalkTitle} onChange={handleChange}
                             className="shadow appearance-none border rounded w-full py-1 mb-2 px-3 text-blue-500   leading-tight    focus:outline-none focus:shadow-outline" />
 
                         <label className="block text-gray-700 text-lg ml-1 font-bold ">Bio</label>

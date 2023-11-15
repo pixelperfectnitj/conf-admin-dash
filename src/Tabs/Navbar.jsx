@@ -127,18 +127,18 @@ const Navbar = () => {
                     <form className="bg-blue-100 shadow-md rounded px-8 pt-6 pb-8 m-10 " onSubmit={handleSubmit} autoComplete="off">
                         <div className="text-blue-700 text-[28px] font-serif mx-auto my-auto grid place-content-center" >About Navbar</div>
                         <label className="block text-gray-700 text-lg ml-1  font-bold " >Heading</label>
-                        <input type="text" name="heading" value={heading} onChange={handleChange}
+                        <input type="text" name="heading"required value={heading} onChange={handleChange}
                             className="shadow appearance-none border rounded w-full py-1 mb-2 px-3 text-blue-500   leading-tight    focus:outline-none focus:shadow-outline" />
 
                         <label className="block text-gray-700 text-lg ml-1 font-bold ">Subheading</label>
-                        <input type="text" name="subHeading" value={subHeading} onChange={handleChange}
+                        <input type="text" name="subHeading" required value={subHeading} onChange={handleChange}
                             className="shadow appearance-none border rounded w-full py-1 mb-2 px-3 text-blue-500   leading-tight    focus:outline-none focus:shadow-outline" />
 
                         <label className="block text-gray-700 text-lg ml-1 font-bold ">Name</label>
-                        <input type="text" name="name" value={name} onChange={handleChange}
+                        <input type="text" name="name" required value={name} onChange={handleChange}
                             className="shadow appearance-none border rounded w-full py-1 mb-2 px-3 text-blue-500   leading-tight    focus:outline-none focus:shadow-outline" />
                         <label className="block text-gray-700 text-lg ml-1 font-bold ">URL</label>
-                        <input type="text" name="url" value={url} onChange={handleChange}
+                        <input type="text" name="url" required value={url} onChange={handleChange}
                             className="shadow appearance-none border rounded w-full py-1 mb-2 px-3 text-blue-500   leading-tight    focus:outline-none focus:shadow-outline" />
                                                     <label className="block text-gray-700 text-lg ml-1 font-bold ">Sequence</label>
 
