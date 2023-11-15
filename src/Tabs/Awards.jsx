@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios'
 import { useParams } from "react-router-dom";
+import LoadingIcon from "../components/LoadingIcon";
 
 const Awards = () => {
     const params = useParams();
     const IdConf = params.confid;
-    const [formData, setFormData] = useState({
+    const initialData = {
 
         confId: IdConf,
         title1: "",
@@ -17,23 +18,51 @@ const Awards = () => {
         hidden: true,
         link: ""
 
-    });
+    };
+    const [formData, setFormData] = useState(initialData);
 
     const [editID, setEditID] = useState()
+    const [loading, setLoading] = useState(false);
 
     const [data, setData] = useState([]);
     const [refresh, setRefresh] = useState(0)
 
     const { confId, title1, title2, description, sequence, featured, hidden, link } = formData;
-
+    
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: name === "sequence" ? parseInt(value) : value, // Parse the value to an integer for "sequence"
-        });
+        if (name === "sequence") {
+            setFormData({
+                ...formData,
+                [name]: parseInt(value),
+            });
+        }
+        else if (name === "featured") {
+            setFormData({
+                ...formData,
+                [name]: value==="true",
+            });
+        }
+        else if (name === "new") {
+            setFormData({
+                ...formData,
+                [name]: value==="true",
+            });
+        }else if (name === "hidden") {
+            setFormData({
+                ...formData,
+                [name]: value==="true",
+            });
+        }
+        else{
+            setFormData({
+                ...formData,
+                [name]: value,
+            });
+        }
+        
     };
-
+    
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -44,21 +73,14 @@ const Awards = () => {
         })
             .then(res => {
                 setData([...data, res.data]);
-                setFormData({
-                    confId: IdConf,
-                    title1: "",
-                    title2: "",
-                    description: "",
-                    sequence: 0,
-                    featured: true,
-                    new: true,
-                    hidden: true,
-                    link: ""
-                }); setRefresh(refresh + 1)
+                setFormData(initialData); setRefresh(refresh + 1)
 
             })
-            .catch(err => console.log(err));
+            .catch(err =>{ console.log(err);
+                console.log(formData)
 
+
+            })
     };
 
     const handleUpdate = () => {
@@ -69,17 +91,7 @@ const Awards = () => {
             }
         })
             .then(res => {
-                setFormData({
-                    confId: IdConf,
-                    title1: "",
-                    title2: "",
-                    description: "",
-                    sequence: 0,
-                    featured: true,
-                    new: true,
-                    hidden: true,
-                    link: ""
-                });
+                setFormData(initialData);
                 setRefresh(refresh + 1)
             })
             .catch(err => console.log(err))
@@ -117,7 +129,7 @@ const Awards = () => {
     };
 
     useEffect(() => {
-
+setLoading(true);
         axios.get(`${import.meta.env.VITE_API_URL}/awards/conference/${IdConf}`, {
             headers: {
                 Authorization: import.meta.env.VITE_API_KEY
@@ -126,13 +138,17 @@ const Awards = () => {
             .then(res => {
                 setData(res.data)
             })
-            .catch(err => console.log(err))
-        // console.log(data);
+            .catch(err =>{ console.log(err)
+
+            })
+            .finally(() => setLoading(false));
+
+         console.log(data);
     }, [refresh]);
 
     return (
 
-        <main className='py-10 bg-gray-100 lg:pl-72'>
+        <main className='py-10 bg-gray-100 lg:pl-72 min-h-screen'>
             <div className='px-4 sm:px-6 lg:px-8'>
                 <form className=" bg-blue-100 shadow-md rounded px-8 pt-6 pb-8 m-10 " onSubmit={handleSubmit}>
                     <div className="text-blue-700 text-[28px] font-serif mx-auto my-auto grid place-content-center" >Add a New Award</div>
@@ -151,6 +167,24 @@ const Awards = () => {
                     <label className="block text-gray-700 text-lg ml-1 font-bold ">Link</label>
                     <input type="text" name="link" value={link} onChange={handleChange}
                         className="shadow appearance-none border rounded w-full py-1 mb-2 px-3 text-blue-700   leading-tight    focus:outline-none focus:shadow-outline" />
+                        <label className="block text-gray-700 text-lg ml-1 font-bold">Feature</label>
+                    <select name="featured" className="shadow appearance-none border rounded w-full py-1 mb-2 px-3 text-blue-700   leading-tight    focus:outline-none focus:shadow-outline" onChange={handleChange}>
+                        <option value={true}>Yes</option>
+                        <option value={false}>No</option>
+
+                    </select>
+                    <label className="block text-gray-700 text-lg ml-1 font-bold">New</label>
+                    <select name="new" className="shadow appearance-none border rounded w-full py-1 mb-2 px-3 text-blue-700   leading-tight    focus:outline-none focus:shadow-outline" onChange={handleChange}>
+                        <option value={true}>Yes</option>
+                        <option value={false}>No</option>
+
+                    </select>
+                    <label className="block text-gray-700 text-lg ml-1 font-bold">Hidden</label>
+                    <select name="hidden" className="shadow appearance-none border rounded w-full py-1 mb-2 px-3 text-blue-700   leading-tight    focus:outline-none focus:shadow-outline" onChange={handleChange}>
+                        <option value={true}>Yes</option>
+                        <option value={false}>No</option>
+
+                    </select>
 
                     <label className="block text-gray-700 text-lg ml-1 font-bold ">Sequence<input
                         type="number"
@@ -177,6 +211,9 @@ const Awards = () => {
 
                 <div className="shadow-md   m-10 ali">
                     <div className="text-black-700 text-[28px] font-serif mx-auto my-auto grid place-content-center" >Added awards</div>
+                    {loading ? (
+                        <LoadingIcon />
+                    ) : (
                     <table className="min-w-full border-collapse box-border " >
                         <thead>
                             <tr className="border-[2px] bg-blue-100  border-blue-500">
@@ -191,7 +228,7 @@ const Awards = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {data.map((item, index) => (
+                            {data.length>0?data.map((item, index) => (
                                 <tr key={index} className="border-[1px] font-serif border-blue-500">
                                     <td className="p-1 text-center">{item.title1}</td>
                                     <td className="p-1 text-center">{item.title2}</td>
@@ -207,9 +244,16 @@ const Awards = () => {
                                         }} className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold px-4 mx-2 rounded focus:outline-none focus:shadow-outline"> Edit </button>{" "}
                                         <button onClick={() => handleDelete(item.id)} className="bg-red-500 hover:bg-red-700 text-white font-bold mx-2 px-4 rounded focus:outline-none focus:shadow-outline"> Delete </button>
                                     </td>
-                                </tr>))}
+                                </tr>)): (
+                                    <tr>                                        
+                                        <td colSpan="5" className="p-1 text-center">No data available</td>
+                                    </tr>
+
+                                )}
                         </tbody>
                     </table>
+                                        )}
+
                 </div>
             </div>
         </main>

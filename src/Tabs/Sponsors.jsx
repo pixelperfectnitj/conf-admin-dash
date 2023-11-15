@@ -1,211 +1,210 @@
 import React, { useState, useEffect } from "react";
-import axios from 'axios'
+import axios from 'axios';
 import { useParams } from "react-router-dom";
+import LoadingIcon from "../components/LoadingIcon";
 
 const Sponsors = () => {
-    const params=useParams();
-    const IdConf=params.confid;
-    const [formData, setFormData] = useState({
-        
-            confId: IdConf,
-            name: "",
-            type: "",
-            logo: "",
-            sequence: 0,
-            featured: true,
-            
-          
-    });
+    const params = useParams();
+    const IdConf = params.confid;
+    const initialData={
+        confId: IdConf,
+        name: "",
+        type: "",
+        logo: "",
+        sequence: 0,
+        featured: true,
+    }
+    const [formData, setFormData] = useState(initialData);
 
-    const [editID, setEditID] = useState()
-
+    const [editID, setEditID] = useState();
     const [data, setData] = useState([]);
-    const [refresh, setRefresh] = useState(0)
+    const [refresh, setRefresh] = useState(0);
+    const [loading, setLoading] = useState(false);
 
-    const {  confId,name, type,logo,sequence,featured } = formData;
+    const { confId, name, type, logo, sequence, featured } = formData;
 
+    
     const handleChange = (e) => {
-        const {name,value } = e.target;
-        setFormData({
-          ...formData,
-          [name]: name === "sequence" ? parseInt(value) : value, // Parse the value to an integer for "sequence"
-        });
-      };
+        const { name, value } = e.target;
+        if (name === "sequence") {
+            setFormData({
+                ...formData,
+                [name]: parseInt(value),
+            });
+        }
+        else if (name === "featured") {
+            setFormData({
+                ...formData,
+                [name]: value === "true",
+            });
+        }
+
+        else {
+            setFormData({
+                ...formData,
+                [name]: value,
+            });
+        }
+
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-       
-            axios.post(`${import.meta.env.VITE_API_URL}/sponsors`, formData, {
-                headers: {
-                    Authorization: import.meta.env.VITE_API_KEY
-                }
-            })
-            .then(res => {
-                setData([...data, res.data]);
-                setFormData({
-                    confId: IdConf,
-                    name: "",
-                    type: "",
-                    logo: "",
-                    sequence: 0,
-                    featured: true,
-                    
-                });                    setRefresh(refresh + 1);
-                console.log(formData);
 
+        axios.post(`${import.meta.env.VITE_API_URL}/sponsor`, formData, {
+            headers: {
+                Authorization: import.meta.env.VITE_API_KEY,
+            },
+        })
+            .then((res) => {
+                setData([...data, res.data]);
+                setFormData(initialData);
+                setRefresh(refresh + 1);
             })
-            .catch(err => {console.log(err);
-            console.log(formData)});
-        
+            .catch((err) => {
+                console.log(err);
+                console.log(formData);
+            });
     };
 
     const handleUpdate = () => {
-
-            axios.put(`${import.meta.env.VITE_API_URL}/sponsors/${editID}`, formData, {
-                headers: {
-                    Authorization: import.meta.env.VITE_API_KEY
-                }
+        axios.put(`${import.meta.env.VITE_API_URL}/sponsor/${editID}`, formData, {
+            headers: {
+                Authorization: import.meta.env.VITE_API_KEY,
+            },
+        })
+            .then((res) => {
+                setFormData(initialData);
+                setRefresh(refresh + 1);
             })
-                .then(res => {
-                    setFormData({ 
-                        confId: IdConf,
-                        name: "",
-                        type: "",
-                        logo: "",
-                        sequence: 0,
-                        featured: true,
-                         });
-                    setRefresh(refresh + 1)
-                })
-                .catch(err =>{console.log(formData);
-                console.log(err)} )
-
-       
+            .catch((err) => {
+                console.log(formData);
+                console.log(err);
+            });
     };
 
     const handleDelete = (deleteID) => {
-
-        axios.delete(`${import.meta.env.VITE_API_URL}/sponsors/${deleteID}`, {
-                headers: {
-                    Authorization: import.meta.env.VITE_API_KEY
-                }
-            })
-        .then(res => {
-           console.log('DELETD RECORD::::', res)
-           setRefresh(refresh + 1)
-
+        axios.delete(`${import.meta.env.VITE_API_URL}/sponsor/${deleteID}`, {
+            headers: {
+                Authorization: import.meta.env.VITE_API_KEY,
+            },
         })
-        .catch(err => console.log(err))
+            .then((res) => {
+                console.log('DELETED RECORD::::', res);
+                setRefresh(refresh + 1);
+            })
+            .catch((err) => console.log(err));
     };
 
     const handleEdit = (editIDNotState) => {
-        axios.get(`${import.meta.env.VITE_API_URL}/sponsors/${editIDNotState}`, {
-                headers: {
-                Authorization: import.meta.env.VITE_API_KEY
-                }
+        axios.get(`${import.meta.env.VITE_API_URL}/sponsor/${editIDNotState}`, {
+            headers: {
+                Authorization: import.meta.env.VITE_API_KEY,
+            },
+        })
+            .then((res) => {
+                setFormData(res.data);
             })
-
-            .then(res => {
-                setFormData(res.data)
-
-            })
-            .catch(err => console.log(err))
+            .catch((err) => console.log(err));
     };
 
     useEffect(() => {
-       
-        axios.get(`${import.meta.env.VITE_API_URL}/sponsors/conference/${IdConf}`, {
-                headers: {
-                    Authorization: import.meta.env.VITE_API_KEY
-                }
+        setLoading(true);
+        axios.get(`${import.meta.env.VITE_API_URL}/sponsor/conference/${IdConf}`, {
+            headers: {
+                Authorization: import.meta.env.VITE_API_KEY,
+            },
+        })
+            .then((res) => {
+                setData(res.data);
             })
-            .then(res => {
-                setData(res.data)
-            })
-            .catch(err => console.log(err))
-        // console.log(data);
+            .catch((err) => console.log(err))
+            .finally(() => setLoading(false));
     }, [refresh]);
 
     return (
-       
-<main className='py-10 bg-gray-100 lg:pl-72'>
-    <div className='px-4 sm:px-6 lg:px-8'>                   
-                    <form className =" bg-blue-100 shadow-md rounded px-8 pt-6 pb-8 m-10 " onSubmit={handleSubmit}>
-                    <div className="text-blue-700 text-[28px] font-serif mx-auto my-auto grid place-content-center" >Add a New Sponsor</div>
-                            <label className ="block text-gray-700 text-lg ml-1 font-bold ">Title-1</label>
-                            <input type="text" name="name" value={name} onChange={handleChange}
-                            className ="shadow appearance-none border rounded w-full py-1 mb-2 px-3 text-blue-700   leading-tight    focus:outline-none focus:shadow-outline"/> 
+        <main className='py-10 bg-gray-100 lg:pl-72 min-h-screen'>
+            <div className='px-4 sm:px-6 lg:px-8'>
+                <form className="bg-blue-100 shadow-md rounded px-8 pt-6 pb-8 m-10" onSubmit={handleSubmit}>
+                    <div className="text-blue-700 text-[28px] font-serif mx-auto my-auto grid place-content-center">Add a New Sponsor</div>
+                    <label className="block text-gray-700 text-lg ml-1 font-bold">Title-1</label>
+                    <input type="text" name="name" value={name} onChange={handleChange}
+                        className="shadow appearance-none border rounded w-full py-1 mb-2 px-3 text-blue-700   leading-tight    focus:outline-none focus:shadow-outline" />
 
-                            <label className ="block text-gray-700 text-lg ml-1 font-bold ">Title-2</label>
-                            <input type="text" name="type" value={type} onChange={handleChange}
-                            className ="shadow appearance-none border rounded w-full py-1 mb-2 px-3 text-blue-700   leading-tight    focus:outline-none focus:shadow-outline"/> 
-                          
-                            <label className="block text-gray-700 text-lg ml-1  font-bold " >logo</label>
-                            <input type="text"  name="logo" value={logo} onChange={handleChange}
-                            className ="shadow appearance-none border rounded w-full py-1 mb-2 px-3 text-blue-700   leading-tight    focus:outline-none focus:shadow-outline"/> 
-<label  className="block text-gray-700 text-lg ml-1 font-bold ">Sequence<input
-  type="number"
-  name="sequence"
-  value={formData.sequence}
-  onChange={handleChange}
-  className="shadow appearance-none border rounded w-full py-1 mb-2 px-3 text-blue-500   leading-tight    focus:outline-none focus:shadow-outline"
-/></label> 
-                            
-                            
-                           
+                    <label className="block text-gray-700 text-lg ml-1 font-bold">Title-2</label>
+                    <input type="text" name="type" value={type} onChange={handleChange}
+                        className="shadow appearance-none border rounded w-full py-1 mb-2 px-3 text-blue-700   leading-tight    focus:outline-none focus:shadow-outline" />
 
-                            
-                        <div className ="flex justify-evenly">
-                        <button type="submit"  className ="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Add Sponsor</button>
-                        <button type="submit"  onClick={() => {
-                            handleUpdate()
-                        }}  className ="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                    <label className="block text-gray-700 text-lg ml-1 font-bold">Logo</label>
+                    <input type="text" name="logo" value={logo} onChange={handleChange}
+                        className="shadow appearance-none border rounded w-full py-1 mb-2 px-3 text-blue-700   leading-tight    focus:outline-none focus:shadow-outline" />
+                        <label className="block text-gray-700 text-lg ml-1 font-bold">Feature</label>
+                        <select name="feature" className="shadow appearance-none border rounded w-full py-1 mb-2 px-3 text-blue-700   leading-tight    focus:outline-none focus:shadow-outline" onChange={handleChange}>
+
+                            <option value={true}>Yes</option>
+                            <option value={false}>No</option>
+
+                        </select>
+                    <label className="block text-gray-700 text-lg ml-1 font-bold">Sequence<input
+                        type="number"
+                        name="sequence"
+                        value={formData.sequence}
+                        onChange={handleChange}
+                        className="shadow appearance-none border rounded w-full py-1 mb-2 px-3 text-blue-500   leading-tight    focus:outline-none focus:shadow-outline"
+                    /></label>
+
+                    <div className="flex justify-evenly">
+                        <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Add Sponsor</button>
+                        <button type="submit" onClick={() => handleUpdate()} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                             Update Sponsor
-                        </button>  
-                        </div>
-                        
-                    </form>
-                    
-                    <hr />
-                    
-                  <div className="shadow-md   m-10 ali">
-                  <div className="text-black-700 text-[28px] font-serif mx-auto my-auto grid place-content-center" >Added Sponsors</div>
-                    <table className="min-w-full border-collapse box-border " >
-                        <thead>
-                            <tr className="border-[2px] bg-blue-100  border-blue-500">
-                            <th className="p-1 text-center">Title-1</th>
-                            <th className="p-1 text-center">Title-1</th>
-
-                                <th className="p-1 text-center  ">logo</th>
-                                <th className="p-1 text-center  ">Sequence</th>
-
-                                <th className="p-1 text-center">Link</th>
-                                <th className="p-1 text-center">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {data.map((item, index) => (
-                                <tr key={index} className="border-[1px] font-serif border-blue-500">
-                                    <td className="p-1 text-center">{item.name}</td>
-                                    <td className="p-1 text-center">{item.type}</td>
-                                    <td className="p-1 text-center">{item.logo}</td>
-                                    <td className="p-1 text-center">{item.link}</td>
-                                    <td className="p-1 text-center">{item.sequence}</td>
-
-                                   
-                                    
-                                    <td className="p-1 text-center  flex justify-evenly">
-                                        <button onClick={() => {handleEdit(item.id)
-                                        setEditID(item.id) }} className ="bg-yellow-500 hover:bg-yellow-700 text-white font-bold px-4 mx-2 rounded focus:outline-none focus:shadow-outline"> Edit </button>{" "}
-                                        <button  onClick={() => handleDelete(item.id)} className ="bg-red-500 hover:bg-red-700 text-white font-bold mx-2 px-4 rounded focus:outline-none focus:shadow-outline"> Delete </button>
-                                    </td>
-                                </tr>))}
-                        </tbody>
-                    </table>
+                        </button>
                     </div>
+                </form>
+
+                <hr />
+
+                <div className="shadow-md m-10 ali">
+                    <div className="text-black-700 text-[28px] font-serif mx-auto my-auto grid place-content-center">Added Sponsors</div>
+                    {!loading ? (
+                        <table className="min-w-full border-collapse box-border">
+                            <thead>
+                                <tr className="border-[2px] bg-blue-100  border-blue-500">
+                                    <th className="p-1 text-center">Name</th>
+                                    <th className="p-1 text-center">Type</th>
+                                    <th className="p-1 text-center">Logo</th>
+                                    <th className="p-1 text-center">Sequence</th>
+                                    <th className="p-1 text-center">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {data.length>0?data.map((item, index) => (
+                                    <tr key={index} className="border-[1px] font-serif border-blue-500">
+                                        <td className="p-1 text-center">{item.name}</td>
+                                        <td className="p-1 text-center">{item.type}</td>
+                                        <td className="p-1 text-center">{item.logo}</td>
+                                        <td className="p-1 text-center">{item.sequence}</td>
+                                        <td className="p-1 text-center  flex justify-evenly">
+                                            <button onClick={() => {
+                                                handleEdit(item._id)
+                                                setEditID(item._id)
+                                            }} className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold px-4 mx-2 rounded focus:outline-none focus:shadow-outline">Edit</button>{" "}
+                                            <button onClick={() => handleDelete(item._id)} className="bg-red-500 hover:bg-red-700 text-white font-bold mx-2 px-4 rounded focus:outline-none focus:shadow-outline">Delete</button>
+                                        </td>
+                                    </tr>
+                                )): (
+                                    <tr>                                        
+                                        <td colSpan="5" className="p-1 text-center">No data available</td>
+                                    </tr>
+
+                                )}
+                            </tbody>
+                        </table>
+                    ) : (
+                        <div>
+<LoadingIcon/></div>                    )}
                 </div>
-                </main>
-           
+            </div>
+        </main>
     );
 };
 

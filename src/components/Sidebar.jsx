@@ -98,7 +98,7 @@ const Sidebar = () => {
                       <div className='flex h-16 shrink-0 items-center'>
                         <img
                           className='h-8 w-auto'
-                          src='https://tailwindui.com/img/logos/mark.svg?color=emerald&shade=600'
+                          src='https://tailwindui.com/img/logos/mark.svg?color=blue&shade=600'
                           alt='Your Company'
                         />
                       </div>
@@ -113,8 +113,8 @@ const Sidebar = () => {
                                   to={item.href}
                                   className={classNames(
                                     item.current
-                                      ? 'bg-gray-50 text-emerald-600'
-                                      : 'text-gray-700 hover:text-emerald-600 hover:bg-gray-50',
+                                      ? 'bg-gray-50 text-blue-600'
+                                      : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50',
                                     'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
                                   )}>
                                   {item.name}
@@ -138,7 +138,7 @@ const Sidebar = () => {
             <div className='flex h-16 shrink-0 items-center'>
               <img
                 className='h-8 w-auto'
-                src='https://tailwindui.com/img/logos/mark.svg?color=emerald&shade=600'
+                src='https://tailwindui.com/img/logos/mark.svg?color=blue&shade=600'
                 alt='Your Company'
               />
             </div>
@@ -152,8 +152,8 @@ const Sidebar = () => {
                           to={item.href}
                           className={classNames(
                             item.current
-                              ? 'bg-gray-50 text-emerald-600'
-                              : 'text-gray-700 hover:text-emerald-600 hover:bg-gray-50 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold',
+                              ? 'bg-gray-50 text-blue-600'
+                              : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold',
                             'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
                           )}
                         >
@@ -183,7 +183,12 @@ const Sidebar = () => {
         </div>
 
       </div>}
-      <Outlet />
+      <div className='float-right '>
+      <button class="h-10 px-5 m-5 mr-20 text-white  bg-blue-600 rounded-lg focus:shadow-outline hover:bg-indigo-800 font-bold hover:text-white" onClick={() => navigate("/")}>Main Page</button>
+
+                
+                </div>
+      <Outlet/>
     </>
   )
 }

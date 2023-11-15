@@ -1,0 +1,53 @@
+[
+    {
+      "label": "Name of Speaker",
+      "name": "Name",
+      "type": "text"
+    },
+    {
+      "label": "Designation",
+      "name": "Designation",
+      "type": "text"
+    },
+    {
+      "label": "Institute",
+      "name": "Institute",
+      "type": "text"
+    },
+    {
+      "label": "Profile Link of Speaker",
+      "name": "ProfileLink",
+      "type": "text"
+    },
+    {
+      "label": "Image Link of Speaker",
+      "name": "ImgLink",
+      "type": "text"
+    },
+    {
+      "label": "TalkType",
+      "name": "TalkType",
+      "type": "text"
+    },
+    {
+      "label": "TalkTitle",
+      "name": "TalkTitle",
+      "type": "text"
+    },
+    {
+      "label": "Bio",
+      "name": "Bio",
+      "type": "text"
+    },
+    {
+      "label": "Abstract",
+      "name": "Abstract",
+      "type": "text"
+    },
+    {
+      "label": "Sequence",
+      "name": "sequence",
+      "type": "number"
+    }
+  ]
+  

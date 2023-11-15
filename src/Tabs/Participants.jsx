@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios'
+import LoadingIcon from "../components/LoadingIcon";
+
 import { useParams } from "react-router-dom";
 const Participants = () => {
     const params = useParams();
     const IdConf = params.confid;
-    const [formData, setFormData] = useState({
+    const initialData={
         "ConfId": IdConf,
         "authorName": "",
         "authorDesignation": "",
@@ -12,9 +14,11 @@ const Participants = () => {
         "paperTitle": "",
         "paperId": "",
         
-    });
+    }
+    const [formData, setFormData] = useState(initialData);
 
     const [editID, setEditID] = useState()
+    const [loading, setLoading] = useState(false);
 
     const [data, setData] = useState([]);
     const [refresh, setRefresh] = useState(0)
@@ -35,15 +39,7 @@ const Participants = () => {
         })
             .then(res => {
                 setData([...data, res.data]);
-                setFormData({
-                    ConfId: IdConf,
-                    authorName: "",
-                    authorDesignation: "",
-                    authorInstitute: "",
-                    paperTitle: "",
-                    paperId: "",
-                    
-                }); setRefresh(refresh + 1)
+                setFormData(initialData); setRefresh(refresh + 1)
 
             })
             .catch(err => console.log(err));
@@ -58,15 +54,7 @@ const Participants = () => {
             }
         })
             .then(res => {
-                setFormData({
-                    ConfId: IdConf,
-                    authorName: "",
-                    authorDesignation: "",
-                    authorInstitute: "",
-                    paperTitle: "",
-                    paperId: "",
-                    
-                });
+                setFormData(initialData);
                 setRefresh(refresh + 1)
             })
             .catch(err => console.log(err))
@@ -105,7 +93,7 @@ const Participants = () => {
     };
 
     useEffect(() => {
-
+setLoading(true)
         axios.get(`${import.meta.env.VITE_API_URL}/participant/conf/${IdConf}`, {
             headers: {
                 Authorization: import.meta.env.VITE_API_KEY
@@ -115,10 +103,12 @@ const Participants = () => {
                 setData(res.data)
             })
             .catch(err => console.log(err))
+            .finally(() => setLoading(false));
+
     }, [refresh]);
 
     return (
-        <main className='py-10 bg-gray-100 lg:pl-72'>
+                <main className='py-10 bg-gray-100 lg:pl-72 min-h-screen'>
             <div className='px-4 sm:px-6 lg:px-8'>
 
                 <div className="block box-border" >
@@ -163,6 +153,9 @@ const Participants = () => {
 
                     <div className="shadow-md   m-10 ali">
                         <div className="text-black-700 text-[28px] font-serif mx-auto my-auto grid place-content-center" >Added Participants</div>
+                        {loading ? (
+                        <LoadingIcon />
+                    ) : (
                         <table className="min-w-full border-collapse box-border " >
                             <thead>
                                 <tr className="border-[2px] bg-blue-100  border-blue-500">
@@ -173,7 +166,7 @@ const Participants = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {data.map((item, index) => (
+                                {data.length>0?data.map((item, index) => (
                                     <tr key={index} className="border-[1px] font-serif border-blue-500">
                                         <td className="p-1 text-center">{item.authorName}</td>
                                         <td className="p-1 text-center">{item.authorDesignation}</td>
@@ -186,9 +179,16 @@ const Participants = () => {
                                             }} className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold px-4 rounded focus:outline-none focus:shadow-outline"> Edit </button>{" "}
                                             <button onClick={() => handleDelete(item.id)} className="bg-red-500 hover:bg-red-700 text-white font-bold  px-4 rounded focus:outline-none focus:shadow-outline"> Delete </button>
                                         </td>
-                                    </tr>))}
+                                    </tr>)): (
+                                    <tr>                                        
+                                        <td colSpan="5" className="p-1 text-center">No data available</td>
+                                    </tr>
+
+                                )}
                             </tbody>
                         </table>
+                        )}
+
                     </div>
                 </div>
             </div>
